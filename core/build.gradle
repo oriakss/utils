@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+}
+
+group = 'ru.clevertec'
+version = '1.0-SNAPSHOT'
+
+jacoco {
+    toolVersion = "0.8.12"
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation 'ru.clevertec:utils:1.1.1'
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    dependsOn test
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.5
+            }
+        }
+    }
+}

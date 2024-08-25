@@ -1,0 +1,4 @@
+rootProject.name = 'checknumbers'
+include 'core'
+include 'api'
+
